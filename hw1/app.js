@@ -23,10 +23,8 @@ console.log(`isEven: ${isEven}`);
 const restFrom500 = 500 - SummAllGoods;
 console.log(`restFrom500: ${restFrom500}`);
 
-console.log(`roundedToHundreds a: ${a.toFixed(2)}`);
-console.log(`roundedToHundreds b: ${b.toFixed(2)}`);
-console.log(`roundedToHundreds c: ${c.toFixed(2)}`);
-
+const avrgPrice = ((a + b + c) / 3).toFixed(2)
+console.log(`average price is: ${avrgPrice}`);
 
 const randomSale = Math.round(Math.random() * 100);
 const SalingPrice = (SummAllGoods - (SummAllGoods * randomSale / 100)).toFixed(2);
@@ -37,4 +35,4 @@ console.log(`Summ with sale is: ${SalingPrice}`);
 const profit = (SalingPrice - (SummAllGoods / 2)).toFixed(2);
 console.log(`Your Profit is: ${profit}`);
 
-console.log(`max price: ${maxPrice}; min price: ${minPrice}; SummAllGoods: ${SummAllGoods}; SummInteger: ${SummInteger}; RoundTo100: ${RoundTo100}; isEven: ${isEven}; isEven: ${isEven}; restFrom500: ${restFrom500}; restFrom500: ${restFrom500}; roundedToHundreds a: ${a.toFixed(2)}; roundedToHundreds b: ${b.toFixed(2)}; roundedToHundreds c: ${c.toFixed(2)}; Your sale is: ${randomSale}%; Summ with sale is: ${SalingPrice}; Your Profit is: ${profit}`);
+console.log(`max price: ${maxPrice}; min price: ${minPrice}; SummAllGoods: ${SummAllGoods}; SummInteger: ${SummInteger}; RoundTo100: ${RoundTo100}; isEven: ${isEven}; isEven: ${isEven}; restFrom500: ${restFrom500}; restFrom500: ${restFrom500}; average price is: ${avrgPrice}; Your sale is: ${randomSale}%; Summ with sale is: ${SalingPrice}; Your Profit is: ${profit}`);
