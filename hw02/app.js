@@ -31,4 +31,4 @@ else {
 }
 
 
-console.log(Summ);
+document.writeln('Summ is: ' + Summ);
