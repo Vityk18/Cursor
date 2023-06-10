@@ -17,7 +17,7 @@ console.log(`SummInteger: ${SummInteger}`);
 const RoundTo100 = Math.round(Math.floor(SummAllGoods) / 100) * 100;
 console.log(`RoundTo100: ${RoundTo100}`);
 
-const isEven = Math.floor(SummAllGoods) % 2 === 0;
+const isEven = Math.floor(SummAllGoods) % 2 === 0;І
 console.log(`isEven: ${isEven}`);
 
 const restFrom500 = 500 - SummAllGoods;
