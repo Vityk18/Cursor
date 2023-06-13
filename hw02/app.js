@@ -9,7 +9,6 @@ let M = +prompt('Введіть кінцеве число M')
 
 while ((M !== Math.floor(M)) || (isNaN(M))) {
     M = +prompt('Введене число невірне. Введіть ціле кінцеве число M')
-    isIntegerM = M === Math.floor(M);
 
 }
 
