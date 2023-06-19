@@ -124,15 +124,11 @@ console.log(`6. countLetter: ` + countLetter("а", "Асталавіста"));
 
 const convertCurrency = (someCurrency) => {
 
-   return someCurrency.toUpperCase().includes('UAH') ?
-    parseInt(someCurrency) / 25 :
-    someCurrency.includes('$') ?
-    parseInt(someCurrency) * 25 :
+   return someCurrency.toUpperCase().includes('UAH') ? parseInt(someCurrency) / 25 :
+    someCurrency.includes('$') ? parseInt(someCurrency) * 25 :
     'Wrong Currency'
 }
-console.log(`8. convertCurrency: ` + convertCurrency("2500$"));
-
-
+console.log(`7, 8. convertCurrency: ` + convertCurrency("2500$"));
 
 
 
@@ -185,7 +181,7 @@ console.log(`11. isPalyndrom: ` +  isPalyndrom("Я несу гусеня"));
 // "сктдеим"
 
 const deleteDuplicateLetter = (text) => {
-    let arr = [...text]
+    const arr = [...text]
     let temp = []
     let result = ''
   for (let i = 0; i < arr.length; i++) {
