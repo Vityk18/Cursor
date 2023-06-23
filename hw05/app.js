@@ -16,35 +16,34 @@ const getRandomArray = (length, min, max) => {
 
 console.log(`1. getRandomArray: ` + getRandomArray(15, 1, 100));
 
-
-
 // 2. Створіть функцію getModa(...numbers) – яка вираховує моду всіх переданих
 // в неї аргументів. НЕ ЦІЛІ ЧИСЛА ІГНОРУЮТЬСЯ
 // Приклад: getModa(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2) –> 2
 
-
 const getModa = (...numbers) => {
   let moda = 0;
   let result;
-  
+
   numbers.forEach((item) => {
     if (Number.isInteger(item)) {
-      const numberOfItems = numbers.filter((element) => element === item).length;
-      
+      const numberOfItems = numbers.filter(
+        (element) => element === item
+      ).length;
+
       if (numberOfItems > moda) {
         moda = numberOfItems;
         result = item;
       }
     }
   });
-  
+
   return result;
 };
 
-console.log(`2. getModa: ` + getModa
-(6, 2, 3, 3, 3, 3, 3, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2));
-
-
+console.log(
+  `2. getModa: ` +
+    getModa(6, 2, 3, 3, 3, 3, 3, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)
+);
 
 //  Варіант виконання задачі 2.0:
 
@@ -74,27 +73,24 @@ console.log(`2. getModa: ` + getModa
 //     getModa(6, 2, 3.3, 3.3, 3.3, 3.3, 3.3, 3.3, 3.3, 2, 3, 3, 3, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)
 // );
 
-
-
 // 3. Створіть функцію getAverage(...numbers) – яка рахує середнє арифметичне
 // всіх переданих в неї аргументів. НЕ ЦІЛІ ЧИСЛА ІГНОРУЮТЬСЯ
 // Приклад: getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2) –> 34.4
 
-
 const getAverage = (...numbers) => {
-let arrLength = numbers.length
-const sum = numbers.reduce((acc, item) => {
-Number.isInteger(item) ? 
-acc+= item :
-arrLength = arrLength - 1
-return acc
-},0)
+  let arrLength = numbers.length;
+  const sum = numbers.reduce((acc, item) => {
+    Number.isInteger(item) ? (acc += item) : (arrLength = arrLength - 1);
+    return acc;
+  }, 0);
 
-  return sum / arrLength
-}
+  return sum / arrLength;
+};
 
-console.log(getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2));
-
+console.log(
+  `3. getAverage: ` +
+    getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)
+);
 
 // 4. Створіть функцію getMedian(...numbers) – яка рахує медіану всіх переданих
 // в неї аргументів. НЕ ЦІЛІ ЧИСЛА ІГНОРУЮТЬСЯ
@@ -102,11 +98,62 @@ console.log(getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2));
 // Приклад: getMedian(1, 2, 3, 4) –> 2.5 Приклад: getMedian(1, 2, 3, 4, 5) –> 3
 
 const getMedian = (...numbers) => {
-  const sortedArr = numbers.sort((a, b) => a - b)
-  if (Number.isInteger(item)) {
-  
+  const sortedArr = numbers
+    .filter((item) => Number.isInteger(item))
+    .sort((a, b) => a - b);
+  if (sortedArr.length % 2 === 0) {
+    return (
+      (sortedArr[sortedArr.length / 2] + sortedArr[sortedArr.length / 2 - 1]) /
+      2
+    );
   }
-return 
-}
 
-console.log(getMedian(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2));
+  return sortedArr[Math.floor(sortedArr.length / 2)];
+};
+
+console.log(`4. getMedian: ` + getMedian(1, 2, 3, 4));
+
+// 5. Створіть функцію filterEvenNumbers(...numbers) – яка фільтрує парні числа
+// передані як аргументи функції.
+// Приклад: filterEvenNumbers(1, 2, 3, 4, 5, 6) -> [1, 3, 5]
+
+const filterEvenNumbers = (...numbers) => {
+  const result = numbers.filter((item) => item % 2 != 0);
+
+  return result;
+};
+
+console.log(`5. filterEvenNumbers: ` + filterEvenNumbers(1, 2, 3, 4, 5, 6));
+
+// 6. Створіть функцію countPositiveNumbers(...numbers) – яка порахує кількість
+// чисел більших
+// Приклад: countPositiveNumbers(1, -2, 3, -4, -5, 6) -> 3
+
+const countPositiveNumbers = (...numbers) =>
+  numbers.filter((item) => item > 0).length;
+
+console.log(
+  `6. countPositiveNumbers: ` + countPositiveNumbers(1, -2, 3, -4, -5, 6)
+);
+
+// 7. Створіть функцію getDividedByFive(...numbers) – яка відфільтрує усі елементи
+// в масиві та залишить тільки ті, які діляться на ціло на 5
+// Приклад: getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2) -> [55, 55]
+
+const getDividedByFive = (...numbers) =>
+  numbers.filter((item) => item % 5 === 0);
+
+console.log(
+  getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)
+);
+
+// 8. Створіть функцію replaceBadWords(string) – яка 1) розіб'є фразу на слова, 2)
+// замінить погані слова на зірочки (*). При вирішенні цього завдання необхідно
+// розбити масив на слова за допомогою функції .split(" "), після чого масив
+// необхідно буде склеїти .join(" ") Погані слова: shit та fuck. Передбачте
+// можливість розширювати cписок цих слів у майбутньому.
+// Приклад: replaceBadWords("Are you fucking kidding?") -> "Are you ****ing
+// kidding?"
+// Приклад: replaceBadWords("Holy shit!") -> "Holy ***!"
+// Приклад: replaceBadWords("It's bullshit!") -> "It's bull****!"
+
