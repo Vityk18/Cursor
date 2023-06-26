@@ -143,9 +143,8 @@ console.log(
 const getDividedByFive = (...numbers) =>
   numbers.filter((item) => item % 5 === 0);
 
-console.log(
-  `getDividedByFive: ` +
-    getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)
+console.log('7. getDividedByFive: ' + 
+  getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)
 );
 
 // 8. Створіть функцію replaceBadWords(string) – яка 1) розіб'є фразу на слова, 2)
@@ -157,3 +156,19 @@ console.log(
 // kidding?"
 // Приклад: replaceBadWords("Holy shit!") -> "Holy ***!"
 // Приклад: replaceBadWords("It's bullshit!") -> "It's bull****!"
+
+const replaceBadWords = (string) => {
+  //  console.log(string.replace(/(shit|fuck)/gi, '***'));  // найпростіший варіант розв'язку задачі
+
+  const badWords = ["shit", "fuck"]; // Додайте нові слова в масив, щоб розширити список поганих слів
+  const stringArr = string.split(" ");
+  let newArr = badWords.map((item) =>
+    stringArr.filter((element) => {
+      if (element.includes(item)) return element;
+    })
+  );
+  console.log(newArr);
+};
+
+console.log(replaceBadWords("Are you fucking kidding?"));
+console.log("asd".includes("s"));
