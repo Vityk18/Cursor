@@ -62,5 +62,5 @@ function getMySalary() {
     console.log(newObj);
   }, 20000);
 }
-
+console.log(`4. getMySalary: (wait 20 sec.)`);
 getMySalary.call(country);
