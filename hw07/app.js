@@ -1,134 +1,66 @@
-const students = [
-  {
-    name: "Tanya",
-    course: 3,
-    subjects: {
-      math: [4, 4, 3, 4],
-      algorithms: [3, 3, 3, 4, 4, 4],
-      data_science: [5, 5, 3, 4],
-    },
-  },
-  {
-    name: "Victor",
-    course: 4,
-    subjects: {
-      physics: [5, 5, 5, 3],
-      economics: [2, 3, 3, 3, 3, 5],
-      geometry: [5, 5, 2, 3, 5],
-    },
-  },
-  {
-    name: "Anton",
-    course: 2,
-    subjects: {
-      statistics: [4, 5, 5, 5, 5, 3, 4, 3, 4, 5],
-      english: [5, 3],
-      cosmology: [5, 5, 5, 5],
-    },
-  },
-];
+const ukraine = { tax: 0.195, middleSalary: 1789, vacancies: 11476 };
+const latvia = { tax: 0.25, middleSalary: 1586, vacancies: 3921 };
+const litva = { tax: 0.15, middleSalary: 1509, vacancies: 1114 };
 
-// 1.  Створіть функцію getSubjects(students[0] --> ["Math", "Algorithms", "Data
-// science"] - яка повертає список предметів для конкретного студента.
-// Зверніть увагу – назву предмету необхідно повертати з великої літери, а _ –
-// замінити на пробіл
+const country = litva;
 
-const getSubjects = (obj) => {
-  return Object.keys(obj.subjects).map(
-    (item) => item[0].toUpperCase() + item.slice(1).replaceAll("_", " ")
-  );
-};
-console.log(`1. getSubjects: `);
-console.log(getSubjects(students[0]));
+// 1.Створіть функцію getMyTaxes.call(country, salary) -> number; – яка рахує
+// скільки податків ви заплатите як IT-спеціаліст в якійсь з країн. Функція повинна
+// викликатись через call та працювати з даними через this
 
-// 2. Створіть функцію getAverageMark(students[0]) --> 3.79 – яка поверне
-// середню оцінку по усім предметам для переданого студента НЕ МАСИВА
-// СТУДЕНТІВ.
-// Оцінку округліть до 2ого знаку. Можна використовувати функції, написані у
-// попередніх домашніх завданнях :)
+function getMyTaxes(salary) {
+  const taxes = salary * this.tax;
+  console.log(`1. getMyTaxes: ` + taxes);
 
-const getAverageMark = (obj) => {
-  const subjectsVal = Object.values(obj.subjects); // отримаємо масив з масивами всіх оцінок obj.subjects
-  const arrAllMarks = [].concat(...subjectsVal); // обєднали в єдиний масив з оцінок
-  const avrgMark =
-    arrAllMarks.reduce((acc, item) => (acc += item), 0) / arrAllMarks.length; // отримаємо середній бал
+  return taxes;
+}
 
-  return avrgMark.toFixed(2);
-};
+getMyTaxes.call(country, 100);
 
-console.log(`2. getAverageMark: ` + getAverageMark(students[0]));
+// 2. Створіть функцію getMiddleTaxes.call(country) -> number; – яка рахує
+// скільки у середньому податків платятт IT-спеціалісти у кожній країні. (tax *
+// middleSalary). Функція повинна викликатись через call та працювати з даними
+// через this
 
-// 3. Створіть функцію getStudentInfo(students[0]) --> { "course": 3, "name":
-// "Tanya", "averageMark": 3.79} – яка повертає інформацію загального виду по
-// переданому студенту (вам знадобиться функція з попереднього завдання).
-// Повинна бути виведена інформація: курс, ім'я, середня оцінка.
+function getMiddleTaxes() {
+  const taxes = this.middleSalary * this.tax;
+  console.log(`2. getMiddleTaxes: ` + taxes);
 
-const getStudentInfo = (obj) => {
-  const newObj = {
-    name: obj.name,
-    course: obj.course,
-    averageMark: getAverageMark(obj),
-  };
-  return newObj;
-};
+  return taxes;
+}
 
-console.log(`3. getStudentInfo :`);
-console.log(getStudentInfo(students[0]));
+getMiddleTaxes.call(country);
 
-// 4.Ствроіть функцію getStudentsNames(students) --> ["Anton", "Tanya, "Victor"]
-// – яка повертає імена студентів у алфавітному порядку.
+// 3. Створіть функцію getTotalTaxes.call(country) -> number; – яка рахує, скільки
+// всього податків платять IT-спеціалісти у кожній країні. (tax * middleSalary *
+// vacancies). Функція повинна викликатись через call та працювати з даними
+// через this
 
-const getStudentsNames = (arrObj) => {
-  const arr = [];
+function getTotalTaxes() {
+  const { tax, middleSalary, vacancies } = this;
+  const allTaxes = tax * middleSalary * vacancies;
+  console.log(`3. getTotalTaxes: ` + allTaxes);
+  return allTaxes;
+}
 
-  for (let el of arrObj) {
-    arr.push(el.name);
-  }
+getTotalTaxes.call(country);
 
-  return arr.sort();
-};
+// 4. Створіть функцію getMySalary(country) – яка буде писати в консоль об'єкт
+// виду: { salary: number, taxes: number, profit: number } кожні 10 секунд.
+// Значення salary – генеруйте випадковим чином у діапазоні 1500-2000. taxes –
+// розраховується в залежності від вибраної країни та значення salary.
+// profit = salary - taxes;
+// для виводу в консоль кожні 10 секунд використайте setInterval
 
-console.log(`4. getStudentsNames: `);
-console.log(getStudentsNames(students));
+function getMySalary() {
+  setInterval(() => {
+    const newObj = {
+      salary: Math.floor(Math.random() * (2000 - 1500 + 1) + 1500),
+    };
+    newObj.taxes = Number((this.tax * newObj.salary).toFixed(2));
+    newObj.profit = newObj.salary - newObj.taxes;
+    console.log(newObj);
+  }, 20000);
+}
 
-// 5. Створіть функцію getBestStudent(students) --> "Anton" – яка повертає
-// кращого студента зі списку по показнику середньої оцінки.
-
-const getBestStudent = (arrObj) => {
-  let theBestSudent = "";
-  let mark = 0;
-  for (let i in arrObj) {
-    if (getAverageMark(arrObj[i]) > mark) {
-      mark = getAverageMark(arrObj[i]);
-      theBestSudent = arrObj[i].name;
-    }
-  }
-
-  return theBestSudent;
-};
-
-console.log(`5. getBestStudent: ` + getBestStudent(students));
-
-// 6. Створіть функцію calculateWordLetters("тест") --> { "т": 2, "е": 1, "с": 1 } – яка
-// повертає обє'кт, в якому ключі це букви у слові, а значення – кількість їх
-// повторень.
-
-const calculateWordLetters = (word) => {
-  let arr = [...word];
-  let newObj = {};
-
-  arr.forEach((element) => {
-    let strNum = arr.reduce((accumulator, currentValue) => {
-      element.toLowerCase() === currentValue.toLowerCase()
-        ? accumulator++
-        : accumulator;
-      return accumulator;
-    }, 0);
-    newObj[`${element}`] = strNum;
-  });
-
-  return newObj;
-};
-
-console.log(`6. calculateWordLetters: `);
-console.log(calculateWordLetters("тест"));
+getMySalary.call(country);
