@@ -60,7 +60,7 @@ function getMySalary() {
     newObj.taxes = Number((this.tax * newObj.salary).toFixed(2));
     newObj.profit = newObj.salary - newObj.taxes;
     console.log(newObj);
-  }, 20000);
+  }, 10000);
 }
-console.log(`4. getMySalary: (wait 20 sec.)`);
+console.log(`4. getMySalary: (wait 10 sec.)`);
 getMySalary.call(country);
