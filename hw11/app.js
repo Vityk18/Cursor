@@ -25,3 +25,7 @@ function getRandomChinese(leng) {
   }
   getSymbol();
 }
+
+console.log("
+: ", 
+);
