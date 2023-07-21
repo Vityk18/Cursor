@@ -10,8 +10,7 @@ async function getInfoFunc() {
     let result = ``;
     const resp = await fetch("https://swapi.dev/api/films/");
     const data = await resp.json();
-    const episodeArr = data.results.filter((item) => item.episode_id == input.value);
-    const episode = episodeArr[0]
+    const episode = data.results.find((item) => item.episode_id == input.value);
     console.log(episode);
     const dataArr = episode.characters;
     dataArr.forEach(async (element) => {
